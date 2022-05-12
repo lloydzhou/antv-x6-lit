@@ -17,15 +17,14 @@ export function defineComponent(factory) {
     // 这里还是将graph作为this传进去
     const template = factory.call(this, props);
     currentInstance = null;
-    // onBeforeMount
     self._bm && self._bm.forEach((cb) => cb());
-    const root = document.createElement("div");
+    self._root = self._root || document.createElement("div");
     let isMounted = false;
     effect(() => {
       if (isMounted) {
         self._bu && self._bu.forEach((cb) => cb());
       }
-      render(template(), root);
+      render(template(), self._root);
       if (isMounted) {
         self._u && self._u.forEach((cb) => cb());
       } else {
@@ -34,7 +33,6 @@ export function defineComponent(factory) {
     });
     // 返回后立马会挂载到节点上面，就立马执行onMounted
     requestAnimationFrame(() => {
-      // onMounted
       self._m && self._m.forEach((cb) => cb());
     });
     node.on("removed", () => {
@@ -44,7 +42,7 @@ export function defineComponent(factory) {
       props["data"] = current;
       props["options"] = options;
     });
-    return root;
+    return self._root;
   };
 }
 
