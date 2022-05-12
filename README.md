@@ -14,40 +14,53 @@
 
 ## 定义一个组件
 ```
-import { defineComponent, onMounted, onUnmounted, onBeforeMount, onBeforeUpdate, onUpdated, html, reactive } from './antv-x6-lit'
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  onBeforeMount,
+  onBeforeUpdate,
+  onUpdated,
+  html,
+  reactive
+} from "antv-x6-lit";
 
-const component = defineComponent((props) => {
-  const state = reactive({count: 0})
+const component = defineComponent((props: any) => {
+  const state = reactive({ count: 0 });
   onMounted(() => {
-    console.log('onMounted')
-    state.count++
-  })
+    const { graph, node, data } = props
+    console.log("onMounted", graph, node, data);
+    state.count++;
+  });
   onBeforeMount(() => {
-    console.log('onBeforeMount')
-    state.count++
-  })
+    console.log("onBeforeMount");
+    state.count++;
+  });
   onBeforeUpdate(() => {
-    console.log('onBeforeUpdate')
-  })
+    console.log("onBeforeUpdate");
+  });
   onUpdated(() => {
-    console.log('onUpdated')
-  })
+    console.log("onUpdated");
+  });
   onUnmounted(() => {
-    console.log('onUnmounted')
-  })
+    console.log("onUnmounted");
+  });
   return () => html`<div>Hello ${state.count} ${props.data.time}!</div>`;
-})
-
+});
 ```
 
 ## 注册组件
 ```
-Graph.registerNode('lit-html', {
-  inherit: 'html',
-  width: 300,
-  height: 40,
-  html: component,
-}, true)
+Graph.registerNode(
+  "lit-html",
+  {
+    inherit: "html",
+    width: 300,
+    height: 40,
+    html: component
+  },
+  true
+);
 ```
 
 ## 向画布添加组件
