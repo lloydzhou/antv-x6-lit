@@ -8,7 +8,7 @@ export function defineComponent(factory) {
   return function (node) {
     // @antv/x6/src/graph/hook.ts  getHTMLComponent FunctionExt.call(ret, this.graph, node)
     // 最终这个函数拿到的this实际上是graph
-    const self = node
+    const self = node;
     const props = (self._props = shallowReactive({
       node,
       data: node.getData() || {}
@@ -37,8 +37,8 @@ export function defineComponent(factory) {
       // onMounted
       self._m && self._m.forEach((cb) => cb());
     });
-    node.on('node:removed', () => {
-      self._um && self._um.forEach((cb) => cb())
+    node.on("removed", () => {
+      self._um && self._um.forEach((cb) => cb());
     });
     node.on("change:data", ({ current, previous, options }) => {
       props["data"] = current;
