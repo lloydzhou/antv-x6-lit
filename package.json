@@ -1,10 +1,14 @@
 {
   "name": "antv-x6-lit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "参考@vue-lit实现的轻量级@antv/x6自定义组件",
   "main": "src/index.js",
   "author": "lloydzhou",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lloydzhou/antv-x6-lit.git"
+  },
   "peerDependencies": {
     "@vue/reactivity": "^3.2.33",
     "lit-html": "^2.2.3"
