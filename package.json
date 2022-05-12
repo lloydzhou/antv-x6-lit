@@ -1,0 +1,12 @@
+{
+  "name": "antv-x6-lit",
+  "version": "1.0.0",
+  "description": "参考@vue-lit实现的轻量级@antv/x6自定义组件",
+  "main": "src/index.js",
+  "author": "lloydzhou",
+  "license": "MIT",
+  "peerDependencies": {
+    "@vue/reactivity": "^3.2.33",
+    "lit-html": "^2.2.3"
+  }
+}
