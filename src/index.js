@@ -1,5 +1,4 @@
 // https://github.com/yyx990803/vue-lit/blob/master/index.js
-
 import { render } from "lit-html";
 import { shallowReactive, effect } from "@vue/reactivity";
 
@@ -7,9 +6,10 @@ let currentInstance;
 export function defineComponent(factory) {
   return function (node) {
     // @antv/x6/src/graph/hook.ts  getHTMLComponent FunctionExt.call(ret, this.graph, node)
-    // 最终这个函数拿到的this实际上是graph
+    const graph = this;
     const self = node;
     const props = (self._props = shallowReactive({
+      graph,
       node,
       data: node.getData() || {}
     }));
@@ -62,4 +62,3 @@ export const onUnmounted = createLifecycleMethod("_um");
 
 export * from "lit-html";
 export * from "@vue/reactivity";
-
