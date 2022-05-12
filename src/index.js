@@ -41,7 +41,6 @@ export function defineComponent(factory) {
       self._um && self._um.forEach((cb) => cb())
     });
     node.on("change:data", ({ current, previous, options }) => {
-      console.log("change:data", current, previous, options);
       props["data"] = current;
       props["options"] = options;
     });
